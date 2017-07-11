@@ -1,0 +1,15 @@
+server:
+  port: 8765
+
+zuul:
+  ignoredServices: "*"
+  routes:
+    dp:
+      path: /display/**
+      url: http://localhost:9987/unknown   # unavailable path
+
+logging:
+  level:
+    root: INFO
+    org.springframework.cloud.sleuth.instrument: DEBUG
+    org.springframework.cloud.netflix.zuul.filters: DEBUG

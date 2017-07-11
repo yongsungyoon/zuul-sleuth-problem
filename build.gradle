@@ -1,0 +1,57 @@
+plugins {
+    id 'java'
+
+    // Spring Boot
+    id 'org.springframework.boot' version '1.5.4.RELEASE'
+
+}
+
+ext {
+    springCloudVersion = 'Dalston.SR1'
+}
+
+group = 'vine'
+version = '0.1-SNAPSHOT'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    compile('org.springframework.boot:spring-boot-starter-actuator')
+    compile('org.springframework.boot:spring-boot-starter-hateoas')
+    compile('org.springframework.boot:spring-boot-configuration-processor') {
+        force = true
+        exclude group: 'com.vaadin.external.google'
+    }
+
+    compile('org.springframework.cloud:spring-cloud-starter-zuul')
+    compile('org.springframework.cloud:spring-cloud-starter-sleuth')
+//    compile('org.springframework.cloud:spring-cloud-sleuth-stream')
+//
+//    // Turbine-RabbitMQ-HystrixStream 식으로 연동되도록 하기 위한 dependencies
+//    compile('org.springframework.cloud:spring-cloud-netflix-hystrix-stream')
+//    compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
+//    // --
+
+    compile('org.springframework.retry:spring-retry:1.2.0.RELEASE')
+
+    testCompileOnly('org.projectlombok:lombok')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+compileJava.dependsOn(ProcessResources)
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:$springCloudVersion"
+    }
+}
+
+tasks.withType(JavaExec) {
+    systemProperties System.properties
+}
