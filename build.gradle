@@ -31,13 +31,6 @@ dependencies {
 
     compile('org.springframework.cloud:spring-cloud-starter-zuul')
     compile('org.springframework.cloud:spring-cloud-starter-sleuth')
-//    compile('org.springframework.cloud:spring-cloud-sleuth-stream')
-//
-//    // Turbine-RabbitMQ-HystrixStream 식으로 연동되도록 하기 위한 dependencies
-//    compile('org.springframework.cloud:spring-cloud-netflix-hystrix-stream')
-//    compile('org.springframework.cloud:spring-cloud-starter-stream-rabbit')
-//    // --
-
     compile('org.springframework.retry:spring-retry:1.2.0.RELEASE')
 
     testCompileOnly('org.projectlombok:lombok')
