@@ -37,7 +37,8 @@ dependencies {
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
-compileJava.dependsOn(ProcessResources)
+processResources.destinationDir = compileJava.destinationDir
+compileJava.dependsOn processResources
 
 dependencyManagement {
     imports {
